@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "294321311877",
+    "project_id": "demofirelogin-e6f03",
+    "storage_bucket": "demofirelogin-e6f03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294321311877:android:6125469fc5e72576ba19ec",
+        "android_client_info": {
+          "package_name": "com.example.food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294321311877-nnfu21bioskrv4emoaqa6ummrtmpokbt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXtAsdVBdgAd_47Gp0BSo7RFNwvQQU4kE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294321311877-nnfu21bioskrv4emoaqa6ummrtmpokbt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
