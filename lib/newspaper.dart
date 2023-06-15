@@ -55,7 +55,7 @@ class _viewNewpaperState extends State<viewNewpaper> {
                       style:
                           TextStyle(fontSize: 40, fontWeight: FontWeight.w800),
                     ),
-                    _buildContent(data),
+                    _buildImage(data),
                     SizedBox(
                       height: 10,
                     ),
@@ -114,7 +114,7 @@ class _viewNewpaperState extends State<viewNewpaper> {
   }
 }
 
-Widget _buildContent(Map<String, dynamic> data) {
+Widget _buildImage(Map<String, dynamic> data) {
   if (data.containsKey('image') && data['image'] != null) {
     return Image.network(
       data['image'],

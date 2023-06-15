@@ -59,10 +59,9 @@ class _upNewpageState extends State<upNewpage> {
             ElevatedButton(
               onPressed: () {
                 final newspaper = Newspaper(
-                  title: titleCtrl.text,
-                  content: contentCtrl.text,
-                  // image: urlCtrl.text
-                );
+                    title: titleCtrl.text,
+                    content: contentCtrl.text,
+                    image: urlCtrl.text);
                 createPaper(newspaper: newspaper);
               },
               child: Text('upbai'),
@@ -122,24 +121,22 @@ class Newspaper {
   String id;
   final String title;
   final String content;
-  // final String image;
-  Newspaper({
-    this.id = '',
-    required this.title,
-    required this.content,
-    // required this.image
-  });
+  final String image;
+  Newspaper(
+      {this.id = '',
+      required this.title,
+      required this.content,
+      required this.image});
 
   Map<String, dynamic> toJson() => {
         'id newspaper': id,
         'title': title,
         'content': content,
-        // 'image': image,
+        'image': image,
       };
   static Newspaper fromJson(Map<String, dynamic> json) => Newspaper(
-        id: json['id newspaper'],
-        title: json['title'],
-        content: json['content'],
-        // image: json['image']
-      );
+      id: json['id newspaper'],
+      title: json['title'],
+      content: json['content'],
+      image: json['image']);
 }

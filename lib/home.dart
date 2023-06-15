@@ -124,13 +124,23 @@ class _HomeState extends State<Home> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   )),
-              Positioned(
+              if (newspaper.image != null)
+                Positioned(
+                  right: 10,
+                  child: SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: Image.network(newspaper.image!),
+                  ),
+                ),
+              if (newspaper.image == null)
+                Positioned(
                   right: 10,
                   child: Container(
                     height: 100,
                     width: 100,
-                    color: Colors.black,
-                  ))
+                  ),
+                ),
             ],
           ),
         )
