@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
                       children: newspapers.map(buildNewspaper2).toList(),
                     );
                   } else {
-                    return MyHomePage();
+                    return Text('lỗi vãi ');
                   }
                 },
               ),
@@ -124,23 +124,23 @@ class _HomeState extends State<Home> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   )),
-              if (newspaper.image != null)
-                Positioned(
-                  right: 10,
-                  child: SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Image.network(newspaper.image!),
-                  ),
-                ),
-              if (newspaper.image == null)
-                Positioned(
-                  right: 10,
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                  ),
-                ),
+              // if (newspaper.image != null)
+              //   Positioned(
+              //     right: 10,
+              //     child: SizedBox(
+              //       height: 100,
+              //       width: 100,
+              //       child: Image.network(newspaper.image!),
+              //     ),
+              //   ),
+              // if (newspaper.image == null)
+              //   Positioned(
+              //     right: 10,
+              //     child: Container(
+              //       height: 100,
+              //       width: 100,
+              //     ),
+              //   ),
             ],
           ),
         )
@@ -151,6 +151,13 @@ class _HomeState extends State<Home> {
   Stream<List<Newspaper>> readNewspapers() => FirebaseFirestore.instance
       .collection('newspaper')
       .snapshots()
-      .map((snapshots) =>
-          snapshots.docs.map((doc) => Newspaper.fromJson(doc.data())).toList());
+      .map((snapshots) => snapshots.docs.map((doc) {
+            final data = doc.data();
+            return Newspaper(
+              id: doc.id,
+              title: data['title'] ?? '',
+              content: data['content'] ?? '',
+              // image: data['image'] ?? null,
+            );
+          }).toList());
 }
