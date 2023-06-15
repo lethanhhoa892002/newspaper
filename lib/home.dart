@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:food/main.dart';
+import 'package:food/newspaper.dart';
 
 import 'package:food/upnew.dart';
 
@@ -92,7 +93,12 @@ class _HomeState extends State<Home> {
           height: 5,
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => viewNewpaper(newID: newspaper.id)));
+          },
           child: Stack(
             children: [
               Container(
@@ -131,11 +137,6 @@ class _HomeState extends State<Home> {
       ],
     );
   }
-
-  Widget buildNewspaper(Newspaper newspaper) => ListTile(
-        leading: Text(newspaper.content),
-        title: Text(newspaper.title),
-      );
 
   Stream<List<Newspaper>> readNewspapers() => FirebaseFirestore.instance
       .collection('newspaper')

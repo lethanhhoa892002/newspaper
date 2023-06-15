@@ -14,6 +14,7 @@ class upNewpage extends StatefulWidget {
 class _upNewpageState extends State<upNewpage> {
   TextEditingController contentCtrl = TextEditingController();
   TextEditingController titleCtrl = TextEditingController();
+  TextEditingController urlCtrl = TextEditingController();
   int _selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
@@ -47,11 +48,21 @@ class _upNewpageState extends State<upNewpage> {
               minLines: 3,
               maxLines: 10,
             ),
+            TextField(
+              controller: urlCtrl,
+              decoration: InputDecoration(
+                hintText: 'Url anh',
+                prefixIcon: Icon(Icons.email),
+              ),
+            ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                final newspaper =
-                    Newspaper(title: titleCtrl.text, content: contentCtrl.text);
+                final newspaper = Newspaper(
+                  title: titleCtrl.text,
+                  content: contentCtrl.text,
+                  // image: urlCtrl.text
+                );
                 createPaper(newspaper: newspaper);
               },
               child: Text('upbai'),
@@ -111,17 +122,24 @@ class Newspaper {
   String id;
   final String title;
   final String content;
+  // final String image;
   Newspaper({
     this.id = '',
     required this.title,
     required this.content,
+    // required this.image
   });
 
   Map<String, dynamic> toJson() => {
         'id newspaper': id,
         'title': title,
         'content': content,
+        // 'image': image,
       };
   static Newspaper fromJson(Map<String, dynamic> json) => Newspaper(
-      id: json['id newspaper'], title: json['title'], content: json['content']);
+        id: json['id newspaper'],
+        title: json['title'],
+        content: json['content'],
+        // image: json['image']
+      );
 }
