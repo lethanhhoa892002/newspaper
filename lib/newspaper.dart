@@ -41,7 +41,7 @@ class _viewNewpaperState extends State<viewNewpaper> {
         }
 
         Map<String, dynamic> data =
-            snapshot.data!.data() as Map<String, dynamic>;
+            snapshot.data?.data() as Map<String, dynamic>;
 
         return SafeArea(
           child: Scaffold(
@@ -117,7 +117,7 @@ class _viewNewpaperState extends State<viewNewpaper> {
 Widget _buildImage(Map<String, dynamic> data) {
   if (data.containsKey('image') && data['image'] != null) {
     return Image.network(
-      data['image'],
+      data['image'].toString().trim(),
       height: 300,
       width: 300,
     );

@@ -61,7 +61,7 @@ class _upNewpageState extends State<upNewpage> {
                 final newspaper = Newspaper(
                   title: titleCtrl.text,
                   content: contentCtrl.text,
-                  // image: urlCtrl.text
+                  image: urlCtrl.text
                 );
                 createPaper(newspaper: newspaper);
               },
@@ -122,24 +122,24 @@ class Newspaper {
   String id;
   final String title;
   final String content;
-  // final String image;
+  final String? image;
   Newspaper({
     this.id = '',
     required this.title,
     required this.content,
-    // required this.image
+    required this.image
   });
 
   Map<String, dynamic> toJson() => {
         'id newspaper': id,
         'title': title,
         'content': content,
-        // 'image': image,
+        'image': image,
       };
   static Newspaper fromJson(Map<String, dynamic> json) => Newspaper(
         id: json['id newspaper'],
         title: json['title'],
         content: json['content'],
-        // image: json['image']
+        image: json['image']
       );
 }

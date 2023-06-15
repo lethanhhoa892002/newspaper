@@ -20,30 +20,137 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            SizedBox(height: 50),
-            Text(
-              'News',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            Expanded(
-              child: StreamBuilder<List<Newspaper>>(
-                stream: readNewspapers(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final newspapers = snapshot.data!;
-                    return ListView(
-                      children: newspapers.map(buildNewspaper2).toList(),
-                    );
-                  } else {
-                    return Text('lỗi vãi ');
-                  }
-                },
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 30,
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: 30),
+              Text(
+                'BáoNews',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-            ),
-          ],
+              SizedBox(height: 20),
+              SizedBox(
+                height: 30,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Container(
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          width: 1,
+                          color: (Colors.grey),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text('ALL'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          width: 1,
+                          color: (Colors.grey),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text('KHOA HỌC'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          width: 1,
+                          color: (Colors.grey),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text('ĐỜI SỐNG'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          width: 1,
+                          color: (Colors.grey),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text('XÃ HỘI'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          width: 1,
+                          color: (Colors.grey),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text('LỊCH SỮ'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          width: 1,
+                          color: (Colors.grey),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text('PANDA'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: StreamBuilder<List<Newspaper>>(
+                  stream: readNewspapers(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final newspapers = snapshot.data!;
+                      return ListView(
+                        children: newspapers.map(buildNewspaper2).toList(),
+                      );
+                    } else {
+                      return Text('lỗi vãi ');
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: true,
@@ -90,7 +197,7 @@ class _HomeState extends State<Home> {
     return Column(
       children: [
         SizedBox(
-          height: 5,
+          height: 8,
         ),
         InkWell(
           onTap: () {
@@ -104,17 +211,24 @@ class _HomeState extends State<Home> {
               Container(
                 height: 100,
                 width: 370,
-                color: Colors.red,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                ),
               ),
               Positioned(
-                  top: 40,
+                  top: 10,
                   left: 10,
                   child: Text(
                     newspaper.title,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                   )),
               Positioned(
-                  top: 10,
+                  top: 40,
                   left: 10,
                   child: Container(
                     width: 200,
@@ -124,16 +238,21 @@ class _HomeState extends State<Home> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   )),
-              // if (newspaper.image != null)
-              //   Positioned(
-              //     right: 10,
-              //     child: SizedBox(
-              //       height: 100,
-              //       width: 100,
-              //       child: Image.network(newspaper.image!),
-              //     ),
-              //   ),
-              // if (newspaper.image == null)
+
+              Positioned(
+                right: 10,
+                child: newspaper.image != null
+                    ? SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: Image.network(newspaper.image.toString()),
+                      )
+                    : Container(
+                        height: 100,
+                        width: 100,
+                      ),
+              ),
+              // if (newspaper.image.toString() == null)
               //   Positioned(
               //     right: 10,
               //     child: Container(
@@ -157,7 +276,7 @@ class _HomeState extends State<Home> {
               id: doc.id,
               title: data['title'] ?? '',
               content: data['content'] ?? '',
-              // image: data['image'] ?? null,
+              image: data['image'] ?? null,
             );
           }).toList());
 }
